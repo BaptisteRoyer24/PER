@@ -1,0 +1,19 @@
+Ce projet s'inscrit dans le cadre de mon alternance chez Air France, une entreprise internationale avec un
+écosystème applicatif complexe comprenant de nombreuses applications clients et internes (+ de 100).
+Chez Air France, les développeurs n'ont volontairement aucun accès direct aux bases de données de production
+pour des raisons de sécurité. Cependant, les équipes ont régulièrement besoin d'interagir avec ces bases pour
+diverses opérations critiques : activation de canary tests, gestion des A/B tests, modification de feature switches,
+débogage en environnement de production, ou encore mise à jour de données métier urgentes.
+Pour répondre à ce besoin, Air France utilise un outil d'administration centralisé (GAT - Global Admin Tool) qui
+permet aux équipes d'interagir avec leurs bases de données sans accès direct. Cependant, les processus actuels
+via le service desk sont longs et décourageants (chaque modification de table ou ajout de colonne nécessite une
+demande formelle), poussant chaque équipe à développer son propre admin tool personnalisé pour répondre à leurs besoins.
+Cela entraîne une duplication massive des efforts, une perte de temps considérable, et laisse les petites équipes sans solution adaptée.
+
+Mon projet vise à trouver une solution générique et configurable : un template d'admin tool que les équipes
+pourront cloner et déployer rapidement. Cette solution nécessitera simplement un fichier de configuration
+spécifiant les accès aux bases de données, les tables et champs à exposer, permettant ainsi de générer
+automatiquement une interface d'administration fonctionnelle en quelques clics.
+Ce projet permettra de standardiser les pratiques, de réduire drastiquement le temps de développement (de
+plusieurs semaines à quelques heures), et de rendre accessible cette solution aux petites équipes qui n'ont pas les
+ressources nécessaires pour développer leur propre outil.

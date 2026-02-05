@@ -1,0 +1,16 @@
+Préambule
+
+Le PER-alternant vient en complément du sujet d'alternance en entreprise. Il vise à développer la capacité des étudiants à réaliser une veuille technologique. Il s’agit d’un moment de réflexion pendant lequel les étudiants peuvent se détacher de demandes courantes pour développer une prise de recul sur les solutions alternatives à un problème donnée. C’est une occasion pour identifier de verrous technologiques, comparer les solutions disponibles dans le marché, identifier et étudier de nouvelles technologies sans les contraintes imposées par le sujet d’alternance, chercher dans l'état de l'art scientifique de solutions qui ne sont pas forcément disponibles dans le marché.
+
+Le résultat attendu d’un PER-alternant peut prendre l’une de formes suivantes :
+
+·       Audit : il s’agit d’une étude approfondi d’un outil/méthode/etc. autour d’une thématique qui concerne la société où se déroule l’alternance. Plus qu’une analyse de l’existant, l’audit doit apporter une réflexion et de recommendations appuyés sur une veuille technologique et les bons pratiques préconisés dans le domaine ciblé.
+·         Benchmarking : il s’agit d’une étude comparative d’outil/méthode/etc avec des éléments disponibles das le marché. L’étude doit proposer une liste de critère comparatifs pertinent et non biaisées pour analyse la thématique ciblée par l’étude. La comparaison peut être analytique et/ou contenir des éléments d’expérimentation.
+·         Révision de la littérature scientifique : il s’agit d’une révision de la littérature scientifique ciblé sur une thématique en lien avec le sujet de l’alternance. Le but est de comprendre les verrous actuels et les opportunités d’innovation.  
+Evaluation et Livrables 
+
+Le PER-alternant est évaluer sur trois livrables, à savoir :
+
+·         Projet d’étude (barème 20%) : identification de la thématique de la vielle technologies, la forma qui prendra l’étude, et le planning propose pour sa réalisation.
+·         Chapitre « PER-Alternant » (barème 50%) : il s'agit d'un document qui présente les résultats obtenus (modalité appliquée au sujet d’étude). Ce document doit être cité dans le rapport d'apprentissage et référencé dans la sa bibliographie. Il doit permettre de mettre en relief et de prendre du recul sur l’« objet d’étude » par rapport au travail effectué par l’étudiant dans le cadre de son alternance.  Ce document doit faire 10 pages max, references non comprises.
+·         Poster (barème 30%) : il s’agit d’un document crée dans un but de vulgarisation des résultats.

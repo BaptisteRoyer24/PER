@@ -1,0 +1,51 @@
+services:
+  # PostgreSQL POC Database
+  postgres-poc:
+    image: postgres:16-alpine
+    container_name: retool-poc-db
+    environment:
+      POSTGRES_DB: poc_airfrance
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - ../../db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - postgres_poc_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  retool-db:
+    image: postgres:16-alpine
+    container_name: retool-db
+    environment:
+      POSTGRES_DB: retool
+      POSTGRES_USER: retool
+      POSTGRES_PASSWORD: retool123
+    volumes:
+      - retool-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  retool:
+    image: tryretool/backend:latest
+    container_name: retool
+    environment:
+      POSTGRES_DB: retool
+      POSTGRES_HOST: retool-db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: retool
+      POSTGRES_PASSWORD: retool123
+      JWT_SECRET: retool_jwt_secret_change_me
+      ENCRYPTION_KEY: retool_encryption_key_change_me_32chars
+      LICENSE_KEY: EXPIRED-LICENSE-KEY-TRIAL
+      BASE_DOMAIN: localhost
+    ports:
+      - "3000:3000"
+    depends_on:
+      - retool-db
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  retool-data:
+  postgres_poc_data:
