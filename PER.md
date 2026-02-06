@@ -452,10 +452,22 @@ JHipster est un générateur Yeoman open-source créé en 2013, spécialisé dan
 **Pricing** : 100% gratuit et open-source (Apache 2.0), aucun coût de licence.
 
 ##### Forces
-*[Points forts identifiés]*
+
+**Gros gain de temps** : Génération d'une application complète avec un backend, une interface et une base de données en quelques heures de travail.
+
+**Stack technique native Air France** : Génération complète Spring Boot + Angular + PosgreQSL alignée avec standards Air France. Code source propriétaire 100% personnalisable sans dépendance runtime à JHipster. Écosystème Spring supporte donc Dynatrace, Azure Key Vault, et déploiement Kubernetes/Docker.
+
+**Extensibilité totale du code généré** : Liberté absolue pour ajouter fonctionnalités métier custom, logique complexe, workflows spécifiques. Le code généré est un point de départ modifiable à l'infini. Tests unitaires et e2e générés automatiquement (JUnit, Jest, Protractor). Intégration CI/CD GitHub Actions pré-configurée.
+
+**Qualité code entreprise** : Code généré respectant best practices (architecture en couches, DTOs, mappers, pagination, filtrage, validation). Spring Security avec JWT/OAuth2 pré-configuré. Support multilingue (i18n), cache (Ehcache/Redis). Documentation Swagger/OpenAPI générée automatiquement.
 
 ##### Faiblesses
-*[Points faibles identifiés]*
+
+**Intégration base existante complexe** : Contrairement à Budibase/Hasura (introspection automatique PostgreSQL), JHipster nécessite définition manuelle de chaque entité via fichiers JDL ou commandes interactives. Pour base de 50+ tables avec relations complexes, time-to-market passe de 15 minutes (Budibase) à plusieurs jours. Pas de reverse engineering natif fiable, outils tiers semi-automatiques nécessitent ajustements manuels importants.
+
+**Évolutivité schéma DB non dynamique** : Ajout tables/colonnes en production nécessite regénération entités JHipster, modifications code, rebuild, et redéploiement complet. Contrairement aux solutions low-code (refresh instantané), chaque évolution DB implique cycle développement complet.
+
+**Interface DAISY non générée nativement** : Frontend généré utilise Angular Material Design, nécessite refonte complète pour intégration composants DAISY Air France. Effort de personnalisation UI significatif (plusieurs jours à semaines selon complexité). Maintenance template frontend custom requis pour cohérence visuelle avec écosystème Air France.
 
 ##### Évaluation par critère
 *[Tableau de notation selon les 5 critères définis en section 2.2]*
@@ -485,10 +497,27 @@ Hashura est un moteur GraphQL open-source qui génère automatiquement une API G
 **Pricing** : Open-source gratuit (MIT), Hasura Cloud ($99-299/mois), Enterprise self-hosted sur devis.
 
 ##### Forces
-*[Points forts identifiés]*
+
+**Génération API instantanée** : API GraphQL complète générée en secondes après connexion PostgreSQL. Introspection automatique des tables, relations, contraintes. Aucun code backend à écrire. Console d'administration React fonctionnelle immédiatement.
+
+**GraphQL natif avec temps réel** : Subscriptions GraphQL via WebSockets pour données temps réel (dashboards live, notifications). Queries optimisées automatiquement (résolution problèmes N+1). Mutations batch natives. API exploratoire GraphiQL intégrée pour tests et documentation interactive.
+
+**Permissions granulaires avancées** : RBAC au niveau GraphQL (row-level et column-level security). Règles de permissions basées sur session JWT/roles avec logique conditionnelle. Test des permissions directement dans la console.
+
+**Architecture cloud-native** : Open-source MIT (plus permissif que GPL v3 Budibase, pas de contamination virale). Stateless par design, parfait pour scaling horizontal Kubernetes. Helm charts officiels maintenus, HPA natif. Compatible AKS, Azure Container Apps avec scale-to-zero. Support Azure Key Vault, authentification JWT/OIDC première classe. Monitoring Prometheus/Grafana natif. Performances excellentes (moteur Haskell compilé, faible latence P99 <50ms).
+
+**Évolutivité schéma sans redéploiement** : Détection automatique changements PostgreSQL (nouvelles tables/colonnes) via refresh console. Actions custom (REST endpoints Node.js/Python) pour logique métier complexe. Event triggers (webhooks) pour réactions événements DB. Remote schemas pour fédération GraphQL multi-sources.
 
 ##### Faiblesses
-*[Points faibles identifiés]*
+
+
+**Authentification Habile nécessite adaptations** : Hasura requiert JWT avec claims `x-hasura-*` spécifiques. Solutions possibles : développer proxy de transformation JWT (Azure Function enrichissant JWT Habile avec claims Hasura), ou modifier configuration Habile pour inclure claims custom.
+
+**Console basique** : Pas de drag & drop pour créer interfaces custom. Console limitée au CRUD basique (tables, formulaires simples) + exploration API. Pour interfaces métier complexes (workflows multi-étapes, dashboards élaborés).
+
+**Intégration écosystème Air France limitée** : Pas d'interface DAISY (console React générique Hasura). Monitoring Dynatrace complexe (moteur Haskell, pas d'agent Java natif, nécessite instrumentation custom via actions). Instrumentation métier limitée (pas de tags custom directs).
+
+**Vendor lock-in engine GraphQL** : Dépendance totale au moteur Hasura Engine pour runtime GraphQL. Métadonnées stockées dans schéma PostgreSQL `hdb_catalog` (format propriétaire). Migration vers stack Spring Boot nécessite redéveloppement API complet (toutes les queries GraphQL à réécrire en REST + JPA). Pas d'export de code backend (contrairement à JHipster qui génère code source propriétaire).
 
 ##### Évaluation par critère
 *[Tableau de notation selon les 5 critères définis en section 2.2]*

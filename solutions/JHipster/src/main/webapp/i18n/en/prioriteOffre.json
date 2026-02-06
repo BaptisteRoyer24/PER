@@ -1,0 +1,10 @@
+{
+  "airfranceAdminApp": {
+    "PrioriteOffre": {
+      "null": "",
+      "ELEVEE": "elevee",
+      "NORMALE": "normale",
+      "BASSE": "basse"
+    }
+  }
+}

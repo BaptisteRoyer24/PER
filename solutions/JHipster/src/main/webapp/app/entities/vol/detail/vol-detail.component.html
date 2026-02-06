@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vol(); as volRef) {
+      <div>
+        <h2 data-cy="volDetailsHeading"><span jhiTranslate="airfranceAdminApp.vol.detail.title">Vol</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ volRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.vol.origin">Origin</span></dt>
+          <dd>
+            <span>{{ volRef.origin }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.vol.destination">Destination</span></dt>
+          <dd>
+            <span>{{ volRef.destination }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.vol.allerRetour">Aller Retour</span></dt>
+          <dd>
+            <span>{{ volRef.allerRetour }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.vol.prix">Prix</span></dt>
+          <dd>
+            <span>{{ volRef.prix }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.vol.createdAt">Created At</span></dt>
+          <dd>
+            <span>{{ volRef.createdAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.vol.updatedAt">Updated At</span></dt>
+          <dd>
+            <span>{{ volRef.updatedAt | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vol', volRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

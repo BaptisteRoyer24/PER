@@ -1,0 +1,29 @@
+{
+  "airfranceAdminApp": {
+    "vol": {
+      "home": {
+        "title": "Vols",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Vol",
+        "createOrEditLabel": "Create or edit a Vol",
+        "notFound": "No Vols found"
+      },
+      "created": "A new Vol is created with identifier {{ param }}",
+      "updated": "A Vol is updated with identifier {{ param }}",
+      "deleted": "A Vol is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vol {{ id }}?"
+      },
+      "detail": {
+        "title": "Vol"
+      },
+      "id": "ID",
+      "origin": "Origin",
+      "destination": "Destination",
+      "allerRetour": "Aller Retour",
+      "prix": "Prix",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    }
+  }
+}

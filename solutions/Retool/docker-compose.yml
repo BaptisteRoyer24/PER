@@ -39,7 +39,7 @@ services:
       LICENSE_KEY: EXPIRED-LICENSE-KEY-TRIAL
       BASE_DOMAIN: localhost
     ports:
-      - "3000:3000"
+      - "3030:3000"
     depends_on:
       - retool-db
     restart: unless-stopped

@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20260205170413"
+  },
+  "applications": ["airfranceAdmin"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "priorite",
+      "fieldType": "PrioriteOffre",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ELEVEE (elevee),NORMALE (normale),BASSE (basse)"
+    },
+    {
+      "fieldName": "createdAt",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "Instant"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Offre",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "origin",
+      "otherEntityName": "vol",
+      "relationshipName": "vol",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

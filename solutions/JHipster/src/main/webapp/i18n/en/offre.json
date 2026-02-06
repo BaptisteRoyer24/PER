@@ -1,0 +1,27 @@
+{
+  "airfranceAdminApp": {
+    "offre": {
+      "home": {
+        "title": "Offres",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Offre",
+        "createOrEditLabel": "Create or edit a Offre",
+        "notFound": "No Offres found"
+      },
+      "created": "A new Offre is created with identifier {{ param }}",
+      "updated": "A Offre is updated with identifier {{ param }}",
+      "deleted": "A Offre is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Offre {{ id }}?"
+      },
+      "detail": {
+        "title": "Offre"
+      },
+      "id": "ID",
+      "priorite": "Priorite",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "vol": "Vol"
+    }
+  }
+}

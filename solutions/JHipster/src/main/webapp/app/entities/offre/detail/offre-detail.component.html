@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (offre(); as offreRef) {
+      <div>
+        <h2 data-cy="offreDetailsHeading"><span jhiTranslate="airfranceAdminApp.offre.detail.title">Offre</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ offreRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.offre.priorite">Priorite</span></dt>
+          <dd>
+            <span [jhiTranslate]="'airfranceAdminApp.PrioriteOffre.' + (offreRef.priorite ?? 'null')">{{
+              { null: '', ELEVEE: 'elevee', NORMALE: 'normale', BASSE: 'basse' }[offreRef.priorite ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.offre.createdAt">Created At</span></dt>
+          <dd>
+            <span>{{ offreRef.createdAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.offre.updatedAt">Updated At</span></dt>
+          <dd>
+            <span>{{ offreRef.updatedAt | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="airfranceAdminApp.offre.vol">Vol</span></dt>
+          <dd>
+            @if (offre()!.vol) {
+              <div>
+                <a [routerLink]="['/vol', offre()!.vol?.id, 'view']">{{ offreRef.vol?.origin }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/offre', offreRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

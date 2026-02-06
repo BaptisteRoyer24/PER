@@ -1,0 +1,29 @@
+{
+  "airfranceAdminApp": {
+    "vol": {
+      "home": {
+        "title": "Vols",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Vol",
+        "createOrEditLabel": "Créer ou éditer un Vol",
+        "notFound": "Aucun Vol trouvé"
+      },
+      "created": "Un nouveau Vol a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Vol avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Vol avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Vol {{ id }} ?"
+      },
+      "detail": {
+        "title": "Vol"
+      },
+      "id": "ID",
+      "origin": "Origin",
+      "destination": "Destination",
+      "allerRetour": "Aller Retour",
+      "prix": "Prix",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    }
+  }
+}

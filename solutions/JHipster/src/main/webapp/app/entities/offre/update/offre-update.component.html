@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-offre-heading" data-cy="OffreCreateUpdateHeading" jhiTranslate="airfranceAdminApp.offre.home.createOrEditLabel">
+        Créer ou éditer un Offre
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="airfranceAdminApp.offre.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let prioriteRef = editForm.get('priorite')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_priorite" jhiTranslate="airfranceAdminApp.offre.priorite">Priorite</label>
+          <select class="form-control" name="priorite" formControlName="priorite" id="field_priorite" data-cy="priorite">
+            <option [ngValue]="null">{{ 'airfranceAdminApp.PrioriteOffre.null' | translate }}</option>
+            @for (prioriteOffre of prioriteOffreValues; track $index) {
+              <option [value]="prioriteOffre">{{ 'airfranceAdminApp.PrioriteOffre.' + prioriteOffre | translate }}</option>
+            }
+          </select>
+          @if (prioriteRef.invalid && (prioriteRef.dirty || prioriteRef.touched)) {
+            <div>
+              @if (editForm.get('priorite')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdAt" jhiTranslate="airfranceAdminApp.offre.createdAt">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_createdAt"
+              data-cy="createdAt"
+              type="datetime-local"
+              class="form-control"
+              name="createdAt"
+              formControlName="createdAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_updatedAt" jhiTranslate="airfranceAdminApp.offre.updatedAt">Updated At</label>
+          <div class="d-flex">
+            <input
+              id="field_updatedAt"
+              data-cy="updatedAt"
+              type="datetime-local"
+              class="form-control"
+              name="updatedAt"
+              formControlName="updatedAt"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vol" jhiTranslate="airfranceAdminApp.offre.vol">Vol</label>
+          <select class="form-control" id="field_vol" data-cy="vol" name="vol" formControlName="vol" [compareWith]="compareVol">
+            <option [ngValue]="null"></option>
+            @for (volOption of volsSharedCollection; track $index) {
+              <option [ngValue]="volOption">{{ volOption.origin }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

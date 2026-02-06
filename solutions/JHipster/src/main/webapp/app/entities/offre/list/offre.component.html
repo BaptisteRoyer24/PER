@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="OffreHeading">
+    <span jhiTranslate="airfranceAdminApp.offre.home.title">Offres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="airfranceAdminApp.offre.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-offre"
+        [routerLink]="['/offre/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="airfranceAdminApp.offre.home.createLabel">Créer un nouveau Offre</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <jhi-filter [filters]="filters" />
+
+  @if (offres().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="airfranceAdminApp.offre.home.notFound">Aucun Offre trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="priorite">
+              <div class="d-flex">
+                <span jhiTranslate="airfranceAdminApp.offre.priorite">Priorite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="createdAt">
+              <div class="d-flex">
+                <span jhiTranslate="airfranceAdminApp.offre.createdAt">Created At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="updatedAt">
+              <div class="d-flex">
+                <span jhiTranslate="airfranceAdminApp.offre.updatedAt">Updated At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vol.origin">
+              <div class="d-flex">
+                <span jhiTranslate="airfranceAdminApp.offre.vol">Vol</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (offre of offres(); track trackId(offre)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/offre', offre.id, 'view']">{{ offre.id }}</a>
+              </td>
+              <td [jhiTranslate]="'airfranceAdminApp.PrioriteOffre.' + (offre.priorite ?? 'null')">
+                {{ { null: '', ELEVEE: 'elevee', NORMALE: 'normale', BASSE: 'basse' }[offre.priorite ?? 'null'] }}
+              </td>
+              <td>{{ offre.createdAt | formatMediumDatetime }}</td>
+              <td>{{ offre.updatedAt | formatMediumDatetime }}</td>
+              <td>
+                @if (offre.vol) {
+                  <div>
+                    <a [routerLink]="['/vol', offre.vol.id, 'view']">{{ offre.vol.origin }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/offre', offre.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/offre', offre.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(offre)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (offres().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

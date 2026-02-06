@@ -1,0 +1,58 @@
+// Configuration de l'application JHipster
+application {
+  config {
+    baseName airfranceAdmin
+    packageName com.airfrance.admin
+    authenticationType jwt
+    prodDatabaseType postgresql
+    devDatabaseType postgresql
+    buildTool maven
+    clientFramework angular
+    enableTranslation true
+    nativeLanguage fr
+    languages [fr, en]
+    testFrameworks [cypress]
+  }
+  entities *
+}
+
+// Énumération pour la priorité des offres
+enum PrioriteOffre {
+  ELEVEE (elevee),
+  NORMALE (normale),
+  BASSE (basse)
+}
+
+// Entité Vol
+entity Vol {
+  origin String required minlength(3) maxlength(3) pattern(/^[A-Z]{3}$/)
+  destination String required minlength(3) maxlength(3) pattern(/^[A-Z]{3}$/)
+  allerRetour Boolean required
+  prix BigDecimal required min(0)
+  createdAt Instant
+  updatedAt Instant
+}
+
+// Entité Offre
+entity Offre {
+  priorite PrioriteOffre required
+  createdAt Instant
+  updatedAt Instant
+}
+
+// Relations
+relationship ManyToOne {
+  Offre{vol(origin)} to Vol
+}
+
+// Options de pagination
+paginate Vol, Offre with pagination
+
+// Options de filtrage
+filter Vol, Offre
+
+// Options de service layer
+service Vol, Offre with serviceClass
+
+// Options de DTO
+dto Vol, Offre with mapstruct

@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "authenticationType": "jwt",
+    "baseName": "airfranceAdmin",
+    "buildTool": "maven",
+    "clientFramework": "angular",
+    "devDatabaseType": "postgresql",
+    "enableTranslation": true,
+    "entities": ["Vol", "Offre"],
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "Njg1MzMzZGViZGIwNTk5MDFiMzI5ZDhjOWI5Mjg2YWQ1ZTVhMTQ1MTE2MTY2ODUwOTUwMTU1ZTZjNDUyZGY4OWNlMDdiZmE2NDJjMWM1YzM3OWYxNmQ3NjE4MGI5OGJhYjNmMjBiMmQ3ZTQwNjJhOWI5YTAyMDYxMzMzM2UwZGY=",
+    "languages": ["fr", "en"],
+    "lastLiquibaseTimestamp": 1770311053000,
+    "monorepository": true,
+    "nativeLanguage": "fr",
+    "packageName": "com.airfrance.admin",
+    "prodDatabaseType": "postgresql",
+    "skipCommitHook": true,
+    "testFrameworks": ["cypress"]
+  }
+}
