@@ -1,0 +1,45 @@
+# Exemple de fichier de configuration pour une application de gestion marketing (vols/offres)
+
+# Configuration générale de l'application
+application:
+  name: admin-marketing  # Nom de l'application générée
+  
+  # Configuration de l'authentification Habile
+  habile:
+    roles: [MARKETING_ADMIN, MARKETING_USER]  # Rôles autorisés
+  
+  # Configuration du monitoring
+  monitoring:
+    dynatrace: enabled  # Activation de l'instrumentation Dynatrace
+    custom-metrics: [offre_updates, vol_queries]  # Métriques métier personnalisées
+
+# Configuration de la base de données
+database:
+  source: existing  # Utilisation d'une base existante (ou 'create' pour générer le schéma)
+  connection: ${AZURE_KEYVAULT_DB_URL}  # URL récupérée depuis Azure Key Vault
+
+# Définition des entités
+entities:
+  # Entité Vol (lecture seule pour les équipes marketing)
+  - name: Vol
+    table: vol  # Table PostgreSQL source
+    permissions:
+      MARKETING_ADMIN: [READ]  # Administrateurs : lecture uniquement
+      MARKETING_USER: [READ]   # Utilisateurs : lecture uniquement
+    ui:
+      list: true    # Générer l'écran de liste
+      detail: true  # Générer l'écran de détail
+      edit: false   # Pas d'écran d'édition (lecture seule)
+  
+  # Entité Offre (CRUD complet avec audit)
+  - name: Offre
+    table: offre  # Table PostgreSQL source
+    permissions:
+      MARKETING_ADMIN: [CREATE, READ, UPDATE, DELETE]  # Administrateurs : accès complet
+      MARKETING_USER: [READ, UPDATE]                    # Utilisateurs : lecture et modification
+    audit: true  # Génération automatique des logs d'audit pour traçabilité
+    ui:
+      list: true    # Générer l'écran de liste
+      detail: true  # Générer l'écran de détail
+      edit: true    # Générer l'écran d'édition
+      components: [daisy-form, daisy-table]  # Composants DAISY à utiliser
